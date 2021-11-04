@@ -1,6 +1,7 @@
 package com.aibles.pstore
 
 import android.app.Application
+import com.facebook.stetho.Stetho
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
@@ -12,7 +13,11 @@ import timber.log.Timber
 class PStoreApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        initTimber()
+        initStetho()
+    }
 
+    private fun initTimber() {
         val formatStrategy: FormatStrategy = PrettyFormatStrategy.newBuilder()
             .showThreadInfo(true) // (Optional) Whether to show thread info or not. Default true
             .methodCount(1) // (Optional) How many method line to show. Default 2
@@ -34,6 +39,12 @@ class PStoreApplication : Application() {
 
         // Usage
         Timber.d("onCreate: Inside Application!")
+    }
+
+    private fun initStetho() {
+        if(BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this)
+        }
     }
 }
 
