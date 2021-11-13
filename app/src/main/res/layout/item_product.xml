@@ -12,16 +12,18 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="10dp"
+        android:layout_marginVertical="10dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/image_product"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="@{View.GONE}"
+                android:layout_height="220dp"
+                app:image="@{product.image}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -39,7 +41,7 @@
                 android:id="@+id/text_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{product.getCurrentPrice()}"
+                android:text="@{String.valueOf(product.basePrice)}"
                 app:layout_constraintTop_toBottomOf="@id/text_product_name"
                 app:layout_constraintStart_toStartOf="parent"/>
 

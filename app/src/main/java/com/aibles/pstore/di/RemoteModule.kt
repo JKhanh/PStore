@@ -51,7 +51,7 @@ object RemoteModule{
 
         return Retrofit.Builder()
             .client(client)
-            .baseUrl("https://api.github.com/")
+            .baseUrl("http://pstore.waoo.ga/api/v1/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(CallAdapterFactory())
             .build()
