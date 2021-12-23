@@ -1,6 +1,10 @@
 package com.aibles.pstore.di
 
+import com.aibles.pstore.data.remote.AuthenticateService
+import com.aibles.pstore.data.remote.CartService
+import com.aibles.pstore.data.remote.OrderService
 import com.aibles.pstore.data.remote.ProductService
+import com.aibles.pstore.utils.remote.AuthInterceptor
 import com.aibles.pstore.utils.remote.CallAdapterFactory
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
@@ -12,6 +16,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -36,6 +41,11 @@ object RemoteModule{
         OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor(stethoInterceptor)
+            .addInterceptor(AuthInterceptor())
+            .callTimeout(1, TimeUnit.MINUTES)
+            .connectTimeout(1, TimeUnit.MINUTES)
+            .readTimeout(1, TimeUnit.MINUTES)
+            .writeTimeout(1, TimeUnit.MINUTES)
             .build()
 
     @Singleton
@@ -51,7 +61,7 @@ object RemoteModule{
 
         return Retrofit.Builder()
             .client(client)
-            .baseUrl("http://pstore.waoo.ga/api/v1/")
+            .baseUrl("https://api.pstore.ml/api/v1/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(CallAdapterFactory())
             .build()
@@ -59,6 +69,21 @@ object RemoteModule{
 
     @Singleton
     @Provides
+    fun provideAuthenticationService(retrofit: Retrofit) =
+        retrofit.create(AuthenticateService::class.java)
+
+    @Singleton
+    @Provides
     fun provideProductService(retrofit: Retrofit) =
         retrofit.create(ProductService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideCartService(retrofit: Retrofit) =
+        retrofit.create(CartService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideOrderService(retrofit: Retrofit) =
+        retrofit.create(OrderService::class.java)
 }

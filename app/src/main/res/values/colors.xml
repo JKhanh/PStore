@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green_700">#64dd17</color>
     <color name="green_500">#4caf50</color>
+    <color name="background_shimmer">#B3B3B3</color>
 </resources>

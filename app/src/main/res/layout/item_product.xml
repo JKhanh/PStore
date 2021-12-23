@@ -3,26 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.view.View"/>
         <variable
             name="product"
             type="com.aibles.pstore.model.entities.Product" />
+        <variable
+            name="onClick"
+            type="com.aibles.pstore.view.home.ProductOnClick" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
-        android:layout_marginVertical="10dp">
+        android:onClick="@{() -> onClick.onClick(product)}"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginVertical="5dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="4dp">
 
             <ImageView
                 android:id="@+id/image_product"
                 android:layout_width="wrap_content"
-                android:layout_height="220dp"
+                android:layout_height="150dp"
                 app:image="@{product.image}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -33,15 +38,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@{product.name}"
+                android:textStyle="bold"
+                android:maxLength="50"
                 app:layout_constraintTop_toBottomOf="@id/image_product"
-                app:layout_constraintStart_toStartOf="@id/image_product"
-                app:layout_constraintEnd_toEndOf="@id/image_product"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/text_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{String.valueOf(product.basePrice)}"
+                app:price="@{product.basePrice}"
                 app:layout_constraintTop_toBottomOf="@id/text_product_name"
                 app:layout_constraintStart_toStartOf="parent"/>
 

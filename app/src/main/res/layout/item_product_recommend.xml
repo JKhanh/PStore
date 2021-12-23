@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="product"
+            type="com.aibles.pstore.model.entities.Product" />
+
+        <variable
+            name="onClick"
+            type="com.aibles.pstore.view.home.ProductOnClick" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> onClick.onClick(product)}"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="16dp"
+        android:layout_marginHorizontal="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <ImageView
+                android:id="@+id/image_product"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:image="@{product.image}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/text_product_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{product.name}"
+                android:textStyle="bold"
+                android:maxLength="30"
+                app:layout_constraintStart_toStartOf="@id/image_product"
+                app:layout_constraintEnd_toEndOf="@id/image_product"
+                app:layout_constraintTop_toBottomOf="@id/image_product"/>
+
+            <TextView
+                android:id="@+id/text_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:price="@{product.basePrice}"
+                app:layout_constraintStart_toStartOf="@id/image_product"
+                app:layout_constraintTop_toBottomOf="@id/text_product_name"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

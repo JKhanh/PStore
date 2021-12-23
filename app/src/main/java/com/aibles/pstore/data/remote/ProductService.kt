@@ -10,11 +10,11 @@ import retrofit2.http.Query
 
 interface ProductService {
     @GET("products/")
-    suspend fun getAllProduct(): Resource<ProductResponse>
+    suspend fun getAllProduct(@Query("offset") offset: Int = 0): Resource<ProductResponse>
 
     @GET("products/")
     fun searchProduct(@Query("search") name: String): Resource<List<Product>>
 
-    @GET("products/{id}/reviews")
-    fun getProductReview(@Path("id") productId: Int): Resource<List<Review>>
+    @GET("recommend/{id}")
+    suspend fun getProductRecommend(@Path("id") productId: String): Resource<List<Product>>
 }

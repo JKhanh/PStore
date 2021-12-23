@@ -1,8 +1,7 @@
 package com.aibles.pstore.di
 
 import com.aibles.pstore.data.remote.ProductService
-import com.aibles.pstore.data.repository.ProductRepository
-import com.aibles.pstore.data.repository.ProductRepositoryImpl
+import com.aibles.pstore.data.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -16,4 +15,16 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun bindProductRepository(impl: ProductRepositoryImpl): ProductRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindCartRepository(impl: CartRepositoryImpl): CartRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindAuthenticationRepository(impl: AuthenticationRepositoryImpl): AuthenticationRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindOrderRepository(impl: OrderRepositoryImpl): OrderRepository
 }

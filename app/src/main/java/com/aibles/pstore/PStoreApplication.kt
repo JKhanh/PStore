@@ -2,6 +2,7 @@ package com.aibles.pstore
 
 import android.app.Application
 import com.facebook.stetho.Stetho
+import com.orhanobut.hawk.Hawk
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
@@ -15,6 +16,7 @@ class PStoreApplication : Application() {
         super.onCreate()
         initTimber()
         initStetho()
+        initHawk()
     }
 
     private fun initTimber() {
@@ -45,6 +47,10 @@ class PStoreApplication : Application() {
         if(BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this)
         }
+    }
+
+    private fun initHawk(){
+        Hawk.init(this).build()
     }
 }
 
