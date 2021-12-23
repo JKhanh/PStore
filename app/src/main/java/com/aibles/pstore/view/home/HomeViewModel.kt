@@ -6,6 +6,7 @@ import com.aibles.pstore.data.repository.ProductRepository
 import com.aibles.pstore.model.entities.Product
 import com.aibles.pstore.model.entities.dto.ProductResponse
 import com.aibles.pstore.utils.AppDispatchers
+import com.aibles.pstore.utils.remote.NetworkException
 import com.aibles.pstore.utils.remote.Resource
 import com.aibles.pstore.utils.remote.map
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,6 +25,8 @@ class HomeViewModel @Inject constructor(
         val response = repository.getAllProduct()
         if (response.isSuccessful()){
             emit(Resource.success(response.data!!.results))
+        } else {
+            emit(Resource.error(response.error ?: NetworkException()))
         }
     }
     val products: LiveData<Resource<List<Product>>> get() = _products.asLiveData()
@@ -36,6 +39,8 @@ class HomeViewModel @Inject constructor(
             val response = repository.getAllProduct()
             if (response.isSuccessful()){
                 emit(Resource.success(response.data!!.results))
+            } else {
+                emit(Resource.error(response.error ?: NetworkException()))
             }
         }
     }

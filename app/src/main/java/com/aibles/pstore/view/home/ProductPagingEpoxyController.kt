@@ -55,7 +55,6 @@ class ProductPagingEpoxyController(
                 models.plus(
                     ErrorEpoxyModel_()
                         .id("error")
-                        .errorStr(error)
                 ).filter { it !is LoadingEpoxyModel_ })
         } else if (isLoading) {
             super.addModels(

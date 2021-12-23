@@ -9,13 +9,22 @@ class CartEpoxyController(
     private val listener: CartItemListener
 ): TypedEpoxyController<List<ItemCartLocal>>() {
     override fun buildModels(data: List<ItemCartLocal>?) {
-        data?.forEach {
-            CartBindingModel_()
-                .id(it.productId)
-                .item(it)
-                .listener(listener)
-                .addTo(this)
+        data?.let {
+            if (it.isEmpty()){
+                CartEmptyEpoxyModel_()
+                    .id("empty")
+                    .addTo(this)
+            } else {
+                data.forEach { item ->
+                    CartBindingModel_()
+                        .id(item.productId)
+                        .item(item)
+                        .listener(listener)
+                        .addTo(this)
+                }
+            }
         }
+
     }
 
 }

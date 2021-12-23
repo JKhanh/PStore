@@ -46,10 +46,16 @@ class HomeFragment: BaseFragment() {
                 when(result.status){
                     Resource.Status.SUCCESS ->{
                         productEpoxyController.isLoading = false
+                        productEpoxyController.isError = false
                         productEpoxyController.setData(result.data)
                     }
                     Resource.Status.LOADING -> {
+                        productEpoxyController.isError = false
                         productEpoxyController.isLoading = true
+                    }
+                    Resource.Status.ERROR -> {
+                        productEpoxyController.isLoading = false
+                        productEpoxyController.isError = true
                     }
                 }
             }

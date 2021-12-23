@@ -88,6 +88,7 @@ dependencies {
     kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
     implementation "com.airbnb.android:epoxy-paging:$epoxyVersion"
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation 'com.airbnb.android:lottie:4.2.2'
 
     def room_version = "2.4.0"
     implementation "androidx.room:room-ktx:$room_version"
