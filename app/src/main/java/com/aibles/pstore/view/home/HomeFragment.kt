@@ -15,6 +15,7 @@ import com.aibles.pstore.databinding.FragmentHomeBinding
 import com.aibles.pstore.model.entities.Product
 import com.aibles.pstore.utils.remote.Resource
 import com.aibles.pstore.view.BaseFragment
+import com.aibles.pstore.view.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import fragmentViewBinding
 import timber.log.Timber
@@ -59,6 +60,10 @@ class HomeFragment: BaseFragment() {
                     }
                 }
             }
+        }
+
+        binding.buttonSearch.setOnClickListener {
+            (requireActivity() as MainActivity).onSearchRequested()
         }
     }
 
