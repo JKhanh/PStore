@@ -1,16 +1,20 @@
 package com.aibles.pstore.di
 
+import android.content.Context
 import com.aibles.pstore.data.remote.AuthenticateService
 import com.aibles.pstore.data.remote.CartService
 import com.aibles.pstore.data.remote.OrderService
 import com.aibles.pstore.data.remote.ProductService
 import com.aibles.pstore.utils.remote.AuthInterceptor
 import com.aibles.pstore.utils.remote.CallAdapterFactory
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -30,18 +34,30 @@ object RemoteModule{
 
     @Singleton
     @Provides
+    fun provideChucker(@ApplicationContext context: Context) =
+        ChuckerInterceptor.Builder(context)
+            .collector(ChuckerCollector(context))
+            .maxContentLength(250000L)
+            .redactHeaders(emptySet())
+            .alwaysReadResponseBody(false)
+            .build()
+
+    @Singleton
+    @Provides
     fun provideStetho() = StethoInterceptor()
 
     @Singleton
     @Provides
     fun provideClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        stethoInterceptor: StethoInterceptor
+        stethoInterceptor: StethoInterceptor,
+        chuckerInterceptor: ChuckerInterceptor
     ) =
         OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor(stethoInterceptor)
             .addInterceptor(AuthInterceptor())
+            .addInterceptor(chuckerInterceptor)
             .callTimeout(1, TimeUnit.MINUTES)
             .connectTimeout(1, TimeUnit.MINUTES)
             .readTimeout(1, TimeUnit.MINUTES)
