@@ -47,7 +47,7 @@
                     android:id="@+id/text_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(product.basePrice)}"
+                    app:price="@{product.basePrice}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_product_name" />
 
@@ -63,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Maybe you also like this"
+                    android:text="@string/recommend"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_description"/>
@@ -84,7 +84,7 @@
             android:id="@+id/button_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add to Cart"
+            android:text="@string/add_to_cart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

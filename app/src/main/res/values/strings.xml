@@ -1,8 +1,22 @@
 <resources>
-    <string name="app_name">PStore</string>
-    <string name="price">%1$s VND</string>
-    <string name="birthday">%1$d - %2$d - %3$d</string>
-    <string name="image1">https://salt.tikicdn.com/cache/w1080/ts/banner/35/84/47/b5968aabcf76d21b74c9afe34664d6c1.png.webp</string>
-    <string name="image2">https://salt.tikicdn.com/cache/w1080/ts/banner/e5/06/65/978bf71239687f0c2ceaa2ff66f29586.png.webp</string>
-    <string name="image3">https://salt.tikicdn.com/cache/w1080/ts/banner/79/ee/90/96195bbb954378d0d26f0a732a3c66a8.png.webp</string>
+    <string name="app_name" translatable="false">PStore</string>
+    <string name="price" translatable="false">%1$s VND</string>
+    <string name="birthday" translatable="false">%1$d - %2$d - %3$d</string>
+    <string name="image1" translatable="false">https://salt.tikicdn.com/cache/w1080/ts/banner/35/84/47/b5968aabcf76d21b74c9afe34664d6c1.png.webp</string>
+    <string name="image2" translatable="false">https://salt.tikicdn.com/cache/w1080/ts/banner/e5/06/65/978bf71239687f0c2ceaa2ff66f29586.png.webp</string>
+    <string name="image3" translatable="false">https://salt.tikicdn.com/cache/w1080/ts/banner/79/ee/90/96195bbb954378d0d26f0a732a3c66a8.png.webp</string>
+    <string name="login">Login</string>
+    <string name="confirm_cart">Confirm Cart</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot">Forgot ?</string>
+    <string name="register">Register</string>
+    <string name="checkout">Checkout</string>
+    <string name="recommend">Maybe you also like this</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="re_enter_password">Re-enter Password</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="birthday_text">Birthday</string>
 </resources>

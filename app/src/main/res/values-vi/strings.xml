@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login">Đăng nhập</string>
+    <string name="confirm_cart">Mua hàng</string>
+    <string name="email">Email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="forgot">Quên mật khẩu ?</string>
+    <string name="register">Đăng ký</string>
+    <string name="checkout">Đặt hàng</string>
+    <string name="recommend">Dành cho bạn</string>
+    <string name="add_to_cart">Thêm vào giỏ</string>
+    <string name="re_enter_password">Nhập lại mật khẩu</string>
+    <string name="firstname">Họ</string>
+    <string name="lastname">Tên</string>
+    <string name="phone_number">Số điện thoại</string>
+    <string name="birthday_text">Ngày sinh</string>
+</resources>
