@@ -19,4 +19,18 @@
     <string name="lastname">Lastname</string>
     <string name="phone_number">Phone Number</string>
     <string name="birthday_text">Birthday</string>
+    <string name="add_cart_success">Add to cart Successful!</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="missing_info">Please fill all the information</string>
+    <string name="missing_email">Email cannot be empty</string>
+    <string name="missing_password">Password cannot be empty</string>
+    <string name="password_not_match">Password not matched</string>
+    <string name="missing_firstname">Firstname cannot be empty</string>
+    <string name="missing_lastname">Lastname cannot be empty</string>
+    <string name="missing_phone">Phone number cannot be empty</string>
+    <string name="register_success">Register Successful!</string>
+    <string name="login_success">Login successful!</string>
+    <string name="order_success">Place order Successful</string>
+    <string name="order_date">Your order will be packed and shipped within a week. Thank you for choosing us!</string>
 </resources>

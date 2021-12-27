@@ -55,32 +55,28 @@ class RegisterFragment: BaseFragment() {
             var check5 = true
             var check6 = true
             if(viewModel.username.value.isNullOrEmpty()){
-                binding.edittextUsername.error = "Email cannot be empty"
+                binding.edittextUsername.error = getString(R.string.missing_email)
                 check1 = false
             }
             if(viewModel.password.value.isNullOrEmpty()){
-                binding.edittextPassword.error = "Password cannot be empty"
+                binding.edittextPassword.error = getString(R.string.missing_password)
                 check2 = false
             }
-            if(binding.edittextPassword2.editText?.text.isNullOrEmpty()){
-                binding.edittextPassword2.error = "Password cannot be empty"
+            if(binding.edittextPassword2.editText?.text.isNullOrEmpty() ||
+                viewModel.password.value!!.equals(binding.edittextPassword2.editText?.text)){
+                binding.edittextPassword2.error = getString(R.string.password_not_match)
                 check3 = false
-            } else {
-                if(viewModel.password.value!!.equals(binding.edittextPassword2.editText?.text)){
-                    binding.edittextPassword2.error = "Password not matched"
-                    check3 = false
-                }
             }
             if(binding.edittextFirstname.editText?.text.isNullOrEmpty()){
-                binding.edittextFirstname.error = "Firstname cannot be empty"
+                binding.edittextFirstname.error = getString(R.string.missing_firstname)
                 check4 = false
             }
             if(binding.edittextLastname.editText?.text.isNullOrEmpty()){
-                binding.edittextLastname.error = "Lastname cannot be empty"
+                binding.edittextLastname.error = getString(R.string.missing_lastname)
                 check5 = false
             }
             if(binding.edittextPhone.editText?.text.isNullOrEmpty()){
-                binding.edittextPhone.error = "Phone number cannot be empty"
+                binding.edittextPhone.error = getString(R.string.missing_phone)
                 check6 = false
             }
 
@@ -103,7 +99,7 @@ class RegisterFragment: BaseFragment() {
 
         viewModel.registerStatus.observe(viewLifecycleOwner){
             if(it.isSuccessful()){
-                Toast.makeText(requireContext(), "Register Successful!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.register_success), Toast.LENGTH_SHORT).show()
                 findNavController().navigateUp()
             }
         }

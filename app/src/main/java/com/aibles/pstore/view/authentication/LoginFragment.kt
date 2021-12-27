@@ -29,9 +29,9 @@ class LoginFragment: BaseFragment() {
             val username = binding.edittextUsername.editText?.text
             val password = binding.edittextPassword.editText?.text
             if(username.isNullOrBlank()) {
-                binding.edittextUsername.error = "Username cannot be empty"
+                binding.edittextUsername.error = getString(R.string.missing_email)
             } else if(password.isNullOrBlank()) {
-                binding.edittextPassword.error = "Password cannot be empty"
+                binding.edittextPassword.error = getString(R.string.missing_password)
             } else {
                 val account = Account(
                     username.toString(), password.toString()
@@ -43,7 +43,7 @@ class LoginFragment: BaseFragment() {
 
         viewModel.loginStatus.observe(viewLifecycleOwner){
             if(it.isSuccessful()){
-                Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.login_success), Toast.LENGTH_SHORT).show()
                 requireActivity().finish()
             }
         }

@@ -14,4 +14,18 @@
     <string name="lastname">Tên</string>
     <string name="phone_number">Số điện thoại</string>
     <string name="birthday_text">Ngày sinh</string>
+    <string name="add_cart_success">Thêm vào giỏ thành công!</string>
+    <string name="name">Tên người nhận hàng</string>
+    <string name="address">Đại chỉ nhận hàng</string>
+    <string name="missing_info">Hãy điền tất cả thông tin ở trên</string>
+    <string name="missing_email">Email không thể để trống</string>
+    <string name="missing_password">Mật khẩu không thể để trống</string>
+    <string name="password_not_match">Mật khẩu không khớp</string>
+    <string name="missing_firstname">Họ không thể để trống</string>
+    <string name="missing_lastname">Tên không thể để trống</string>
+    <string name="missing_phone">Số điện thoại không thể để trống</string>
+    <string name="register_success">Đăng ký thành công!</string>
+    <string name="login_success">Đăng nhập thành công!</string>
+    <string name="order_success">Đặt hàng thành công!</string>
+    <string name="order_date">Đơn hàng của bạn sẽ được giao trong vòng 1 tuần. Cảm ơn đã mua sắm cùng chúng tôi!</string>
 </resources>

@@ -31,9 +31,7 @@ class CartFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("onViewCreated: Before call API")
         viewModel.getCart()
-        Timber.d("onViewCreated: After call API")
         val controller = CartEpoxyController(object : CartItemListener {
             override fun onItemCheckedChange(itemCartLocal: ItemCartLocal, isCheck: Boolean) {
                 viewModel.addToOrder(itemCartLocal, isCheck)

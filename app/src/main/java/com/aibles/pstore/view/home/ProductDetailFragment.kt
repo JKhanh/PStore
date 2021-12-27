@@ -48,7 +48,7 @@ class ProductDetailFragment: BaseFragment() {
 
         binding.buttonCart.setOnClickListener {
             cartViewModel.addToCart(binding.product!!)
-            Snackbar.make(requireView(), "Add to cart Success!", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(requireView(), getString(R.string.add_cart_success), Snackbar.LENGTH_SHORT).show()
         }
     }
 
