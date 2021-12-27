@@ -23,6 +23,9 @@ interface CartDao {
     @Delete
     suspend fun deleteItem(item: ItemCartLocal)
 
+    @Query("DELETE FROM itemcartlocal WHERE id in (:listId)")
+    suspend fun deleteListItem(listId: List<Int>)
+
     suspend fun updateQuantity(item: ItemCartLocal, quantity: Int){
         if(quantity > 0){
             updateItem(item.productId, item.quantity + 1)

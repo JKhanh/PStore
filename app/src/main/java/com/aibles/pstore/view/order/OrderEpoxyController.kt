@@ -9,8 +9,6 @@ import timber.log.Timber
 class OrderEpoxyController: TypedEpoxyController<List<ItemCartLocal>>() {
     override fun buildModels(data: List<ItemCartLocal>?) {
         data?.forEach {
-            Timber.d("buildModels: $it")
-
             CartOrderBindingModel_()
                 .id(it.id)
                 .item(it)

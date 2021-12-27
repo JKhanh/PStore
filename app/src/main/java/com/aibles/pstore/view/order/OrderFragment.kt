@@ -7,15 +7,14 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.viewbinding.ViewBinding
 import com.aibles.pstore.R
 import com.aibles.pstore.databinding.FragmentOrderBinding
 import com.aibles.pstore.utils.hideKeyboard
+import com.aibles.pstore.utils.remote.Resource
 import com.aibles.pstore.view.BaseFragment
 import com.aibles.pstore.view.cart.CartViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
 import fragmentViewBinding
 
 @AndroidEntryPoint
@@ -24,7 +23,7 @@ class OrderFragment: BaseFragment() {
         get() = R.layout.fragment_order
     override val binding: FragmentOrderBinding by fragmentViewBinding(FragmentOrderBinding::bind)
     private val cartViewModel by activityViewModels<CartViewModel>()
-    private val viewModel by viewModels<OrderViewModel>()
+    private val viewModel by activityViewModels<OrderViewModel>()
 
     private val controller = OrderEpoxyController()
 
@@ -37,19 +36,11 @@ class OrderFragment: BaseFragment() {
             if(binding.textName.editText?.text.isNullOrBlank() ||
                 binding.textAddress.editText?.text.isNullOrBlank() ||
                 binding.textPhone.editText?.text.isNullOrBlank()){
-                Toast.makeText(requireContext(), "Please fill all the information", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.missing_info), Toast.LENGTH_SHORT).show()
             } else {
-                val dialog = MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Place order Successful")
-                    .setMessage("Your order will be packed and shipped within a week. Thank you for choosing us!")
-                    .setPositiveButton("OK") { _: DialogInterface, _: Int ->
-                        cartViewModel.deleteAfterOrder()
-                        findNavController().navigateUp()
-                    }
-                    .setCancelable(false)
-                    .create()
-
-                dialog.show()
+                viewModel.createOrder(cartViewModel.orderItems)
+                cartViewModel.deleteAfterOrder()
+                finishOrder()
             }
         }
 
@@ -64,6 +55,35 @@ class OrderFragment: BaseFragment() {
                 }
             }
         }
+
+//        observeOrder()
+    }
+
+    private fun observeOrder() {
+        viewModel.order.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                Resource.Status.SUCCESS -> {
+                    binding.progressBar.visibility = View.GONE
+
+                }
+            }
+        }
+    }
+
+    private fun finishOrder(){
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.order_success))
+            .setMessage(getString(R.string.order_date))
+            .setPositiveButton("OK") { _: DialogInterface, _: Int ->
+                findNavController().navigateUp()
+            }
+            .setCancelable(false)
+            .create()
+
+        dialog.show()
     }
 
     override fun onResume() {

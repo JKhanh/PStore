@@ -81,11 +81,6 @@ class CartRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteItem(itemCartLocal: MutableList<ItemCartLocal>) {
-        val iterator = itemCartLocal.iterator()
-        while (iterator.hasNext()) {
-            val item = iterator.next()
-            cartDao.deleteItem(item)
-            deleteItem(item)
-        }
+        cartDao.deleteListItem(itemCartLocal.map { it.id })
     }
 }

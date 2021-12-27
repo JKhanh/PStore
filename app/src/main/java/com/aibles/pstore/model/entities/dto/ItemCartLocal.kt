@@ -14,4 +14,7 @@ data class ItemCartLocal(
     var quantity: Int,
     val created: Long = System.currentTimeMillis(),
     var updated: Long = System.currentTimeMillis()
-)
+) {
+    fun mapToRemote(): ItemCartRequest =
+        ItemCartRequest(productId, id, quantity)
+}
