@@ -16,6 +16,7 @@ import com.aibles.pstore.model.entities.Product
 import com.aibles.pstore.utils.remote.Resource
 import com.aibles.pstore.view.BaseFragment
 import com.aibles.pstore.view.MainActivity
+import com.aibles.pstore.view.carousel.CarouselAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import fragmentViewBinding
 import timber.log.Timber
@@ -29,7 +30,7 @@ class HomeFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        initCarousel()
+        initCarousel()
         val productEpoxyController = ProductEpoxyController(object : ProductOnClick {
             override fun onClick(product: Product){
                 viewModel.secProduct.push(product)
@@ -67,38 +68,24 @@ class HomeFragment: BaseFragment() {
         }
     }
 
-//    private fun initCarousel() {
-//        binding.carousel.carousel.setAdapter(object : Carousel.Adapter {
-//            override fun count(): Int = 3
-//
-//            override fun populate(view: View?, index: Int) {
-//            }
-//
-//            override fun onNewItem(index: Int) {
-//            }
-//
-//        })
-//        binding.carousel.apply {
-//            view1.load(getString(R.string.image1)) {
-//                crossfade(true)
-//                precision(Precision.EXACT)
-//                scale(Scale.FILL)
-//            }
-//            view2.load(getString(R.string.image2)) {
-//                crossfade(true)
-//                precision(Precision.EXACT)
-//                scale(Scale.FILL)
-//            }
-//            view3.load(getString(R.string.image3)) {
-//                crossfade(true)
-//                precision(Precision.EXACT)
-//                scale(Scale.FILL)
-//            }
-//        }
-//    }
+    private fun initCarousel() {
+        val imageList = listOf(
+            getString(R.string.image1),
+            getString(R.string.image2),
+            getString(R.string.image3)
+        )
+        val carouselAdapter = CarouselAdapter(imageList, true)
+        binding.carouselPager.adapter = carouselAdapter
+    }
 
     override fun onResume() {
         super.onResume()
         viewModel.getProducts()
+        binding.carouselPager.resumeAutoScroll()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.carouselPager.pauseAutoScroll()
     }
 }

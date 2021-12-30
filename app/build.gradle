@@ -96,7 +96,9 @@ dependencies {
     implementation "androidx.room:room-paging:2.4.0"
 
     def paging_version = "3.1.0"
-    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation 'com.asksira.android:loopingviewpager:1.4.1'
 
     implementation platform('com.google.firebase:firebase-bom:29.0.2')
     implementation 'com.google.firebase:firebase-crashlytics-ktx'

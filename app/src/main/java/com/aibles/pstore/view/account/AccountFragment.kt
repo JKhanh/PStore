@@ -23,7 +23,7 @@ class AccountFragment: BaseFragment() {
         binding.buttonLogin.setOnClickListener {
             if (Hawk.contains("token")) {
                 Hawk.delete("token")
-                binding.buttonLogin.text = "Login"
+                binding.buttonLogin.text = getString(R.string.login)
             } else {
                 val intent = Intent(requireActivity(), LoginActivity::class.java)
                 startActivity(intent)
@@ -34,10 +34,10 @@ class AccountFragment: BaseFragment() {
     override fun onResume() {
         super.onResume()
         if(Hawk.contains("token")){
-            binding.buttonLogin.text = "Logout"
+            binding.buttonLogin.text = getString(R.string.logout)
         }
         else {
-            binding.buttonLogin.text = "Login"
+            binding.buttonLogin.text = getString(R.string.login)
         }
     }
 }

@@ -33,4 +33,5 @@
     <string name="login_success">Login successful!</string>
     <string name="order_success">Place order Successful</string>
     <string name="order_date">Your order will be packed and shipped within a week. Thank you for choosing us!</string>
+    <string name="logout">Logout</string>
 </resources>

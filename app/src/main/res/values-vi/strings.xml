@@ -28,4 +28,5 @@
     <string name="login_success">Đăng nhập thành công!</string>
     <string name="order_success">Đặt hàng thành công!</string>
     <string name="order_date">Đơn hàng của bạn sẽ được giao trong vòng 1 tuần. Cảm ơn đã mua sắm cùng chúng tôi!</string>
+    <string name="logout">Đăng xuất</string>
 </resources>
